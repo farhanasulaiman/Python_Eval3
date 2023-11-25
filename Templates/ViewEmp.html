@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    <style>
+        table, td, th{
+        border:1px solid black;
+        }
+        table{
+        border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h2>Employee List</h2>
+<table>
+    <tr>
+        <th>Emp ID</th>
+        <th>Emp Name</th>
+        <th>Salary</th>
+        <th>Delete</th>
+    </tr>
+     {% for row in data %}
+    <tr>
+        <td>{{ row.employee_Id }}</td>
+        <td>{{ row.employee_name }}</td>
+        <td>{{ row.salary }}</td>
+        <td><form action="{% url 'del' row.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Delete</button> </form>
+        </td>
+    </tr>
+     {% endfor %}
+</table>
+</body>
+</html>
